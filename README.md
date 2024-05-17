@@ -127,7 +127,7 @@ you may also add as many as bots you want. (max limit is 50)
 > [!NOTE]
 > **Make Sure that you have to Generate the `Pyrofork Session String`**
 
-To generate the Session String use this [Colab Tool](https://colab.research.google.com/drive/1F3cRAdgvFSenOoVSxJFxP-356pE4sWOL)
+To generate the Session String use this [Colab Tool]((https://colab.research.google.com/drive/12hcTQnn9wTPG0wAB8Kf9vz_AbfWpltS2#scrollTo=NDpKCpuD2xjE)
 
 
 ### ***Playlist Creator*** 📀
