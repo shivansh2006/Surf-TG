@@ -23,7 +23,7 @@ async def posts_chat(channels):
                     
                         <div class="img-container text-center"
                             style="width: 145px; height: 145px; display: inline-block; overflow: hidden; position: relative; border-radius: 50%; margin: auto;">
-                            <img src="https://cdn.jsdelivr.net/gh/weebzone/weebzone/data/Surf-TG/src/loading.gif" class="card-img-top lzy_img"
+                            <img src="https://media.tenor.com/-7LKYbNbLiIAAAAi/vodafone-greece-vodafone.gif" class="card-img-top lzy_img"
                                 data-src="{img}" alt="{title}"
                                 style="object-fit: cover; width: 100%; height: 100%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                         </div>
@@ -53,7 +53,7 @@ async def post_playlist(playlists):
             
                 <div class="img-container text-center"
                     style="width: 145px; height: 145px; display: inline-block; overflow: hidden; position: relative; border-radius: 50%; margin: auto;">
-                    <img src="https://cdn.jsdelivr.net/gh/weebzone/weebzone/data/Surf-TG/src/loading.gif"
+                    <img src="https://media.tenor.com/-7LKYbNbLiIAAAAi/vodafone-greece-vodafone.gif"
                         class="card-img-top lzy_img" data-src="{img}" alt="{title}"
                         style="object-fit: cover; width: 100%; height: 100%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                 </div>
@@ -83,7 +83,7 @@ async def posts_db_file(posts):
                 class="admin-only position-absolute top-0 end-0 m-2" data-bs-toggle="modal" data-bs-target="#editModal"><i
                     class="bi bi-pencil-square"></i></a>
             
-                <img src="https://cdn.jsdelivr.net/gh/weebzone/weebzone/data/Surf-TG/src/loading.gif" data-src="{img}"
+                <img src="https://media.tenor.com/-7LKYbNbLiIAAAAi/vodafone-greece-vodafone.gif" data-src="{img}"
                     class="card-img-top rounded-top lzy_img" alt="{title}">
                 <a href="/watch/{chat_id}?id={id}&hash={hash}">
                 <div class="card-body p-1">
