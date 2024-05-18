@@ -64,7 +64,7 @@ async def posts_file(posts, chat_id):
                         <input type="checkbox" class="admin-only form-check-input position-absolute top-0 end-0 m-2"
                             onchange="checkSendButton()" id="selectCheckbox"
                             data-id="{id}|{hash}|{title}|{size}|{type}|{img}">
-                        <img src="https://cdn.jsdelivr.net/gh/weebzone/weebzone/data/Surf-TG/src/loading.gif" class="lzy_img card-img-top rounded-top"
+                        <img src="https://media.tenor.com/-7LKYbNbLiIAAAAi/vodafone-greece-vodafone.gif" class="lzy_img card-img-top rounded-top"
                             data-src="{img}" alt="{title}">
                         <a href="/watch/{chat_id}?id={id}&hash={hash}">
                         <div class="card-body p-1">
