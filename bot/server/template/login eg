@@ -140,7 +140,7 @@
                 <input type="hidden" name="redirect_url" value="{{ redirect_url }}">
                 <div>
                     <label for="username">EMAIL ID</label>
-                    <input type="email" id="username" name="username" placeholder="Enter your EMAIL" required>
+                    <input type="username" id="username" name="username" placeholder="Enter your EMAIL" required>
                 </div>
 
                 <div>
