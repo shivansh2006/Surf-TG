@@ -1,0 +1,117 @@
+"use client";
+import React from "react";
+
+function MainComponent() {
+  const [showCreateModal, setShowCreateModal] = React.useState(false);
+  const [showEditModal, setShowEditModal] = React.useState(false);
+  const [isHovered, setIsHovered] = React.useState(null);
+
+  return (
+    <div className="min-h-screen bg-[#00050D]">
+      <nav className="bg-[#0F171E] fixed w-full z-50 transition-all duration-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center">
+              <img
+                src="https://telegra.ph/file/ea08cf70d852c8422b932.png"
+                alt="Website logo"
+                className="h-8 w-auto"
+              />
+              <span className="ml-3 font-bold text-[#00A8E1] text-2xl">
+                StreamHub
+              </span>
+            </div>
+            <button className="text-gray-300 hover:text-[#00A8E1] transition-colors">
+              <i className="fas fa-sign-out-alt text-xl"></i>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-bold text-white">ALL FILES</h1>
+          <button
+            onClick={() => setShowCreateModal(true)}
+            className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors"
+          >
+            Add Content
+          </button>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+          {[1, 2, 3].map((item) => (
+            <div
+              key={item}
+              className="group relative rounded-sm overflow-hidden transition-all duration-300 hover:scale-105 hover:z-10 cursor-pointer"
+              onMouseEnter={() => setIsHovered(item)}
+              onMouseLeave={() => setIsHovered(null)}
+            >
+              <div className="aspect-[2/3] bg-[#141414]">
+                <img
+                  src="https://telegra.ph/file/ea08cf70d852c8422b932.png"
+                  alt={`Server ${item}`}
+                  className="w-full h-full object-cover opacity-90 group-hover:opacity-50 transition-opacity duration-300"
+                />
+              </div>
+              <div
+                className={`absolute inset-0 bg-gradient-to-t from-[#00050D] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+              />
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <h3 className="text-white font-semibold truncate flex items-center justify-between opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                  <span className="text-lg">Server {item}</span>
+                  <i className="fas fa-play-circle text-[#00A8E1] text-2xl hover:text-[#4AC6E9]"></i>
+                </h3>
+              </div>
+            </div>
+          ))}
+        </div>
+      </main>
+
+      <footer className="bg-[#222] mt-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <p className="text-center text-gray-400 text-sm">
+            Made with <i className="fas fa-heart text-red-500"></i> by shivansh
+            singh
+            <span className="block text-gray-500">© 2024</span>
+          </p>
+        </div>
+      </footer>
+
+      {showCreateModal && (
+        <div className="fixed inset-0 bg-[#00050D] bg-opacity-90 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-[#0F171E] rounded-sm p-8 w-full max-w-md border border-[#1A242F]">
+            <h2 className="text-xl font-bold mb-6 text-white">
+              Add New Content
+            </h2>
+            <input
+              type="text"
+              name="folderName"
+              placeholder="Enter title"
+              className="w-full bg-[#1A242F] text-white border-0 rounded-sm p-3 mb-4 placeholder-gray-400 focus:ring-2 focus:ring-[#00A8E1] focus:outline-none"
+            />
+            <input
+              type="text"
+              name="thumbnail"
+              placeholder="Poster URL"
+              className="w-full bg-[#1A242F] text-white border-0 rounded-sm p-3 mb-6 placeholder-gray-400 focus:ring-2 focus:ring-[#00A8E1] focus:outline-none"
+            />
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => setShowCreateModal(false)}
+                className="px-6 py-2 text-gray-400 hover:text-white transition-colors"
+              >
+                Cancel
+              </button>
+              <button className="bg-[#00A8E1] text-white px-6 py-2 rounded-sm hover:bg-[#4AC6E9] transition-colors">
+                Add
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default MainComponent;
