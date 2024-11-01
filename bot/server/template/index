@@ -1,0 +1,170 @@
+"use client";
+import React from "react";
+
+function MainComponent() {
+  const [showModal, setShowModal] = React.useState(false);
+  const [folderSearch, setFolderSearch] = React.useState("");
+  const [selectedIds, setSelectedIds] = React.useState("");
+  const [page, setPage] = React.useState(1);
+
+  return (
+    <div className="min-h-screen bg-[#141414] text-white font-netflix">
+      <nav className="bg-[#141414] border-b border-[#E50914]/10">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <a href="/" className="flex items-center">
+            <img
+              src="https://telegra.ph/file/ea08cf70d852c8422b932.png"
+              alt="Pyara Paradise Logo"
+              className="h-[30px]"
+            />
+          </a>
+          <div className="flex items-center space-x-4">
+            <form
+              action="/reload"
+              method="get"
+              role="reload"
+              className="admin-only"
+            >
+              <button
+                type="submit"
+                className="text-[#E50914] hover:text-[#E50914]/80 transition-colors"
+                name="chatId"
+              >
+                <i className="fa fa-refresh"></i>
+              </button>
+            </form>
+            <form
+              id="signoutForm"
+              action="/logout"
+              method="post"
+              className="flex"
+              role="logout"
+            >
+              <button
+                type="submit"
+                className="bg-[#E50914] hover:bg-[#E50914]/90 text-white px-4 py-2 rounded text-sm font-medium transition-colors"
+              >
+                <i className="fa fa-sign-out me-2"></i>Logout
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex items-center justify-between mb-8">
+          <div className="bg-[#1A1C22] rounded-lg p-4">
+            <h2 className="text-xl font-medium text-[#E50914]">
+              Pyara Paradise Chat
+            </h2>
+          </div>
+          <button
+            onClick={() => setShowModal(true)}
+            className="admin-only bg-[#E50914] hover:bg-[#E50914]/90 text-white text-sm px-4 py-2 rounded font-medium transition-colors"
+          >
+            Send
+          </button>
+        </div>
+        <div className="max-w-2xl mx-auto">
+          <form className="flex gap-3" action="/search" method="get">
+            <input
+              className="flex-1 bg-[#1A1C22] border border-[#E50914]/20 rounded px-4 py-2 text-white focus:outline-none focus:border-[#E50914]"
+              type="search"
+              placeholder="Search"
+              name="q"
+            />
+            <button
+              className="bg-[#E50914] hover:bg-[#E50914]/90 text-white px-6 py-2 rounded font-medium transition-colors"
+              type="submit"
+            >
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+        <div className="flex justify-center mt-8">
+          <div className="inline-flex rounded-md">
+            <button
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              className="px-4 py-2 text-sm font-medium text-white bg-[#E50914] hover:bg-[#E50914]/90 rounded-l-md transition-colors"
+            >
+              Previous
+            </button>
+            <button
+              onClick={() => setPage((p) => p + 1)}
+              className="px-4 py-2 text-sm font-medium text-white bg-[#E50914] hover:bg-[#E50914]/90 rounded-r-md transition-colors"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <footer className="w-full py-8 mt-auto bg-[#141414] border-t border-[#E50914]/10">
+        <div className="container mx-auto px-4">
+          <div className="text-center text-gray-400">
+            <p className="mb-2">
+              Made with <i className="fa fa-heart text-[#E50914]"></i> by{" "}
+              <a
+                href=""
+                target="_blank"
+                className="text-[#E50914] hover:text-[#E50914]/80"
+              >
+                shivansh singh
+              </a>
+            </p>
+            <p className="text-sm">&copy; 2024 All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+
+      {showModal && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-[#141414] border border-[#E50914]/20 p-6 rounded-lg w-full max-w-md">
+            <form action="/send" method="post" id="sendPopupForm">
+              <input type="hidden" name="selectedIds" value={selectedIds} />
+              <label className="text-[#1CE783] font-medium">
+                Search Folder:
+              </label>
+              <input
+                type="text"
+                className="w-full bg-[#1A1C22] border border-[#E50914]/20 rounded-md px-4 py-2 mt-2 text-white focus:outline-none focus:border-[#E50914]"
+                value={folderSearch}
+                onChange={(e) => setFolderSearch(e.target.value)}
+              />
+              <select className="w-full bg-[#1A1C22] border border-[#E50914]/20 rounded-md px-4 py-2 mt-3 text-white focus:outline-none focus:border-[#E50914]"></select>
+              <div className="flex justify-end gap-3 mt-6">
+                <button
+                  type="button"
+                  onClick={() => setShowModal(false)}
+                  className="px-4 py-2 text-white bg-[#1A1C22] hover:bg-[#1A1C22]/80 rounded transition-colors"
+                >
+                  Close
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-[#E50914] hover:bg-[#E50914]/90 text-white rounded font-medium transition-colors"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      <style jsx global>{`
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: #888; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        .col { transition: all 0.3s; }
+        .col:hover { transform: scale(1.05); }
+      `}</style>
+    </div>
+  );
+}
+
+export default MainComponent;
