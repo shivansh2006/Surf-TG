@@ -145,6 +145,46 @@
                 </div>
             </a>
         </div>
+
+        <!-- Configuration Modal -->
+        <div class="modal" id="editConfigModal">
+            <div class="modal-content">
+                <h2 style="font-size: 20px; color: white;">Edit Configuration</h2>
+                <form action="/config" method="post">
+                    <label for="edit_channel" style="color: white;">Auth Channel:</label>
+                    <input type="text" class="form-control" id="edit_channel" name="channel" style="width: 100%; padding: 12px; margin-bottom: 12px; background-color: #1A242F; color: white; border: none; border-radius: 4px;">
+                    
+                    <label for="edit_theme" style="color: white;">Theme:</label>
+                    <input type="text" class="form-control" id="edit_theme" name="theme" style="width: 100%; padding: 12px; margin-bottom: 12px; background-color: #1A242F; color: white; border: none; border-radius: 4px;">
+                    
+                    <div style="display: flex; justify-content: flex-end; gap: 12px;">
+                        <button type="button" class="btn" style="padding: 8px 16px; color: gray;" data-dismiss="modal">Close</button>
+                        <button type="submit" style="background-color: #00A8E1; color: white; padding: 8px 16px; border-radius: 4px;">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Create Folder Modal -->
+        <div class="modal" id="createFolderModal">
+            <div class="modal-content">
+                <h2 style="font-size: 20px; color: white;">Create New Folder</h2>
+                <form action="/create" method="post">
+                    <label for="folderName" style="color: white;">Folder Name:</label>
+                    <input type="text" class="form-control" id="folderName" name="folderName" placeholder="Enter folder name" style="width: 100%; padding: 12px; margin-bottom: 12px; background-color: #1A242F; color: white; border: none; border-radius: 4px;">
+                    
+                    <label for="thumbnail" style="color: white;">Thumbnail URL:</label>
+                    <input type="text" class="form-control" id="thumbnail" name="thumbnail" placeholder="Thumbnail url" style="width: 100%; padding: 12px; margin-bottom: 12px; background-color: #1A242F; color: white; border: none; border-radius: 4px;">
+                    
+                    <input type="hidden" id="parent_dir" name="parent_dir" readonly>
+                    <div style="display: flex; justify-content: flex-end; gap: 12px;">
+                        <button type="button" class="btn" style="padding: 8px 16px; color: gray;" data-dismiss="modal">Close</button>
+                        <button type="submit" style="background-color: #00A8E1; color: white; padding: 8px 16px; border-radius: 4px;">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </main>
 
     <footer class="footer">
@@ -153,43 +193,37 @@
             <span style="display: block; color: gray;">© 2024</span>
         </p>
     </footer>
-
-    <!-- Modal -->
-    <div class="modal" id="addContentModal">
-        <div class="modal-content">
-            <h2 style="font-size: 20px; color: white;">Add New Content</h2>
-            <input type="text" placeholder="Enter title" style="width: 100%; padding: 12px; margin-bottom: 12px; background-color: #1A242F; color: white; border: none; border-radius: 4px;">
-            <input type="text" placeholder="Poster URL" style="width: 100%; padding: 12px; margin-bottom: 12px; background-color: #1A242F; color: white; border: none; border-radius: 4px;">
-            <div style="display: flex; justify-content: flex-end; gap: 12px;">
-                <button id="cancelBtn" style="padding: 8px 16px; color: gray;">Cancel</button>
-                <button style="background-color: #00A8E1; color: white; padding: 8px 16px; border-radius: 4px;">Add</button>
-            </div>
-        </div>
-    </div>
-
     <script>
         const addContentBtn = document.getElementById('addContentBtn');
-        const modal = document.getElementById('addContentModal');
-        const cancelBtn = document.getElementById('cancelBtn');
+        const createFolderModal = document.getElementById('createFolderModal');
+        const editConfigModal = document.getElementById('editConfigModal');
 
-        // Show modal when button is clicked
+        // Show create folder modal when button is clicked
         addContentBtn.addEventListener('click', function () {
-            modal.classList.add('active');
-        });
-
-        // Hide modal when cancel button is clicked
-        cancelBtn.addEventListener('click', function () {
-            modal.classList.remove('active');
+            createFolderModal.classList.add('active');
         });
 
         // Hide modal when clicking outside of the modal content
-        modal.addEventListener('click', function (event) {
-            if (event.target === modal) {
-                modal.classList.remove('active');
-            }
+        function hideModal(modal) {
+            modal.classList.remove('active');
+        }
+
+        // Event listeners to close modals
+        document.querySelectorAll('[data-dismiss="modal"]').forEach(button => {
+            button.addEventListener('click', function () {
+                hideModal(createFolderModal);
+                hideModal(editConfigModal);
+            });
+        });
+
+        // Hide modal when clicking outside of the modal content
+        [createFolderModal, editConfigModal].forEach(modal => {
+            modal.addEventListener('click', function (event) {
+                if (event.target === modal) {
+                    hideModal(modal);
+                }
+            });
         });
     </script>
-
 </body>
-
 </html>
