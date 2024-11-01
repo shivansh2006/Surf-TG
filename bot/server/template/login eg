@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,17 +15,20 @@
             display: flex;
             flex-direction: column;
         }
+
         nav {
             background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding: 16px;
         }
+
         .container {
             max-width: 1200px;
             margin: auto;
             padding: 0 16px;
         }
+
         .welcome-container {
             flex: 1;
             display: flex;
@@ -32,19 +36,21 @@
             align-items: center;
             min-height: 80vh;
         }
+
         .form-container {
             width: 100%;
             max-width: 400px;
             background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
-            padding: 32px; /* Consistent padding */
+            padding: 32px;
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center content */
+            align-items: center;
         }
+
         h1 {
             color: white;
             font-size: 24px;
@@ -52,21 +58,24 @@
             margin-bottom: 12px;
             text-align: center;
         }
+
         p {
             color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 24px; /* More space below paragraph */
+            margin-bottom: 24px;
             text-align: center;
         }
+
         label {
             color: white;
             font-weight: 600;
             margin-bottom: 4px;
             display: block;
-            text-align: left; /* Align left */
-            width: 90%; /* Make label width less for centering */
+            text-align: left;
+            width: 90%;
         }
+
         input {
-            width: 90%; /* 90% width for inputs */
+            width: 90%;
             background: rgba(255, 255, 255, 0.1);
             color: white;
             padding: 12px;
@@ -75,12 +84,14 @@
             margin-bottom: 16px;
             transition: border-color 0.3s;
         }
+
         input:focus {
             border-color: #ff0000;
             outline: none;
         }
+
         button {
-            width: 90%; /* 90% width for button */
+            width: 90%;
             background: linear-gradient(to right, #ff0000, #cc0000);
             color: white;
             padding: 12px;
@@ -90,15 +101,18 @@
             cursor: pointer;
             margin-top: 12px;
         }
+
         button:hover {
             transform: scale(1.02);
         }
+
         #errorPopup {
             color: #ff0000;
             font-weight: bold;
             margin-top: 16px;
             display: none; /* Initially hidden */
         }
+
         .footer {
             margin-top: 32px;
             text-align: center;
@@ -109,10 +123,11 @@
         }
     </style>
 </head>
+
 <body>
     <nav>
         <div class="container">
-            <img src="https://ucarecdn.com/062e3a11-545f-433e-a615-7a18777aed09/-/format/auto/" alt="Modern Red and Black Logo" style="height: 45px;">
+            <img src="https://ucarecdn.com/062e3a11-545f-433e-a615-7a18777aed09/-/format/auto/" alt="Logo" style="height: 45px;">
         </div>
     </nav>
 
@@ -122,6 +137,7 @@
             <p>Enter your credentials to access your account</p>
 
             <form id="signinForm" action="/login" method="post">
+                <input type="hidden" name="redirect_url" value="{{ redirect_url }}">
                 <div>
                     <label for="username">EMAIL ID</label>
                     <input type="email" id="username" name="username" placeholder="Enter your EMAIL" required>
@@ -135,8 +151,8 @@
                 <button type="submit">Access Premium Content</button>
             </form>
 
-            <div id="errorPopup" style="display: block;"> <!-- Change to block for visibility -->
-                <strong>Oh snap! Something went wrong.</strong>
+            <div id="errorPopup">
+                <strong>Oh snap! Invalid username or password</strong>
             </div>
 
             <div class="footer">
@@ -146,5 +162,21 @@
             </div>
         </div>
     </div>
+
+    <script>
+        window.onload = function () {
+            var errorPopup = document.getElementById("errorPopup");
+            var errorMessage = errorPopup.querySelector("strong").innerText.trim();
+
+            if (errorMessage !== "Oh snap! Invalid username or password") {
+                errorPopup.style.display = "none";
+            }
+            if (errorMessage === "Oh snap! Invalid username or password") {
+                setTimeout(function () {
+                    errorPopup.style.display = "none";
+                }, 5000);
+            }
+        };
+    </script>
 </body>
 </html>
